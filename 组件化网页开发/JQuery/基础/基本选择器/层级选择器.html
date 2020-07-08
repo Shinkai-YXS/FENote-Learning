@@ -1,0 +1,109 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-06-23 10:32:18
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-06-23 10:56:43
+ * @Description: 
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ancestor Descendant</title>
+<script src="../../jquery.js"></script>
+</head>
+<body>
+<aside>
+    <details>
+        <summary>网页设计</summary>
+        <ul>
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li>Sketch</li>
+        </ul>
+    </details>
+    <details>
+        <summary>网站前端</summary>
+        <details>
+            <summary>结构层</summary>
+            <ul>
+                <li>HTML</li>
+                <li>Jade</li>
+            </ul>
+        </details>
+        <details>
+            <summary>表示层</summary>
+            <ul>
+                <li>Css</li>
+                <li>Less</li>
+                <li>Sass</li>
+            </ul>
+        </details>
+        <details>
+            <summary>行为层</summary>
+            <ul>
+                <li>JavaScript</li>
+                <li>CoffeeScript</li>
+                <li>TypeScript</li>
+            </ul>
+        </details>
+    </details>
+    <details>
+        <summary>网站后端</summary>
+        <ul>
+            <li>Asp</li>
+            <li>Jsp</li>
+            <li>PHP</li>
+            <li>Python</li>
+            <li>Golang</li>
+            <li>Node</li>
+        </ul>
+    </details>
+    <details>
+        <summary>数据库</summary>
+        <details>
+            <summary>关系型数据库</summary>
+            <ul>
+                <li>Oracle</li>
+                <li>DB2</li>
+                <li>Microsoft SQL Server</li>
+                <li>Microsoft Access</li>
+                <li>MySQL</li>
+                <li>SQLite</li>
+            </ul>
+        </details>
+        <details>
+            <summary>非关系型数据库</summary>
+            <ul>
+                <li>NoSQL</li>
+                <li>Cloudant</li>
+                <li>MongoDB</li>
+                <li>Redis</li>
+                <li>HBase</li>
+            </ul>
+        </details>
+    </details>
+</aside>
+<script>
+  $(document).ready(function() {
+    // 找出结构层所有的 summary
+    var summary = $('aside ul li')
+    console.log(summary)
+
+    // 找出第一级标题
+    summary = $('aside > details > summary')
+    console.log(summary)
+
+    // 找出 summary 后面的 ul
+    var ul = $('summary + ul')
+    console.log(ul)
+
+    ul = $('summary ~ ul')
+    console.log(ul)
+
+    var details = $('summary ~ details')
+    console.log(details)
+  })
+</script>
+</body>
+</html>
