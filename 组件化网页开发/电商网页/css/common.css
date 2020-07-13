@@ -9,7 +9,10 @@ a.link {
 a.link:hover {
   color: #f01414;
 }
-/* dropdown */
+/**
+ * @Author: YXS
+ * @Description: dropdown
+ */
 .dropdown {
   position: relative;
 }
@@ -26,6 +29,7 @@ a.link:hover {
 }
 .dropdown-layer {
   display: none;
+  overflow: hidden;
   position: absolute;
   z-index: 1;
 }
@@ -36,6 +40,12 @@ a.link:hover {
 .dropdown-right {
   right: 0;
   left: auto;
+}
+.dropdown-loading {
+  width: 32px;
+  height: 32px;
+  background: url(../img/loading.gif) no-repeat;
+  margin: 20px;
 }
 
 /* menu dropdown */
@@ -82,9 +92,7 @@ a.link:hover {
   background-color: #fff;
   border-color: #cdd0d4;
 }
-.menu-active .dropdown-layer {
-  display: block;
-}
+
 [class*="-active"] .dropdown-arrow {
   transform: rotate(180deg);
   -o-transform: rotate(180deg);
@@ -118,4 +126,22 @@ a.link:hover {
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
+}
+/**
+ * @Author: YXS
+ * @Description: showHide
+ */
+.fadeOut {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+.slideUpDownCollapse {
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.slideLeftRightCollapse {
+  width: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

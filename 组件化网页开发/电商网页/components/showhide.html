@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-07 10:29:35
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-08 11:07:19
+ * @LastEditTime: 2020-07-08 18:01:35
  * @Description: 
 --> 
 <!DOCTYPE html>
@@ -13,9 +13,13 @@
   <title>显示隐藏模块</title>
   <link rel="stylesheet" href="../css/base.css">
   <style>
-    body {
-      width: 400px;
-      margin: 0 auto;
+    .box_wrap {
+      min-width: 200px;
+      max-width: 400px;
+      min-height: 300px;
+      float: left;
+      padding: 20px;
+      overflow: hidden;
     }
 
     .btn {
@@ -24,6 +28,7 @@
     }
 
     #box {
+      display: none;
       width: 100%;
       height: 200px;
       background-color: red;
@@ -41,42 +46,291 @@
       visibility: hidden !important;
       opacity: 0 !important;
     }
+    .slideUpDownCollapse {
+      height: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    .slideLeftRightCollapse {
+      width: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
   </style>
 </head>
 <body>
-  <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
-  <div id="box"></div>
+  <div id="slient" class="box_wrap">
+    <h1>slient</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="css3Fade" class="box_wrap">
+    <h1>css3 Fade</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="css3SlideUpDown" class="box_wrap">
+    <h1>css3 SlideUpDown</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="css3SlideLeftRight" class="box_wrap">
+    <h1>css3 SlideLeftRight</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="css3FadeSlideUpDown" class="box_wrap">
+    <h1>css3 FadeSlideUpDown</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="css3FadeSlideLeftRight" class="box_wrap">
+    <h1>css3 FadeSlideLeftRight</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="jsFade" class="box_wrap">
+    <h1>js Fade</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="jsSlideUpDown" class="box_wrap">
+    <h1>js SlideUpDown</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="jsSlideLeftRight" class="box_wrap">
+    <h1>css3 SlideLeftRight</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="jsFadeSlideUpDown" class="box_wrap">
+    <h1>css3 FadeSlideUpDown</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
+
+  <div id="jsFadeSlideLeftRight" class="box_wrap">
+    <h1>css3 FadeSlideLeftRight</h1>
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+  </div>
   <script src="../js/jquery.js"></script>
+  <script src="./js/transition.js"></script>
   <script src="./js/showHide.js"></script>
   <script>
-    var $box = $('#box');
-    // slient
-    slient.init($box)
-    // css3 fade
-    css3.fade.init($box)
-    $('#btn-show').on('click', function() {
-      // slient
-      // slient.show($box)
-      // css3 fade
-      css3.fade.show($box)
+    var $slientBox = $('#slient > #box');
+    $slientBox.showHide({
+        css3:true,
+        js:false,
+        animation:'fade'
+    });
+    $('#slient > #btn-show').on('click', function() {
+      $slientBox.showHide('show')
     })
-    $('#btn-hide').on('click', function(){
-      // slient
-      // slient.hide($box)
-      // css3 fade
-      css3.fade.hide($box)
+    $('#slient > #btn-hide').on('click', function(){
+      $slientBox.showHide('hide')
     })
     // 接收订阅
-    $box.on('show shown hide hidden', function(e) {
-      console.log(e.type)
-      // if (e.type === 'show') {
-      //   $box.html('<p>我被展示了</p>')
-      // }
-      // if (e.type === 'shown') {
-      //   setTimeout(() => {
-      //     $box.html($box.html() + '<p>我已经展示了</p>')
-      //   }, 2000)
-      // }
+    $slientBox.on('show shown hide hidden', function(e) {
+      console.log('$slientBox -- ',e.type)
+      if (e.type === 'show') {
+        $slientBox.html('<p>我被展示了</p>')
+      }
+      if (e.type === 'shown') {
+        setTimeout(() => {
+          $slientBox.html($slientBox.html() + '<p>我已经展示了</p>')
+        }, 2000)
+      }
+    })
+
+    // css3 fade
+    var $css3FadeBox = $('#css3Fade > #box');
+    $css3FadeBox.showHide({
+        css3:true,
+        js:false,
+        animation:'fade'
+    });
+    $('#css3Fade > #btn-show').on('click', function() {
+      $css3FadeBox.showHide('show')
+    })
+    $('#css3Fade > #btn-hide').on('click', function(){
+      $css3FadeBox.showHide('hide')
+    })
+    // 接收订阅
+    $css3FadeBox.on('show shown hide hidden', function(e) {
+      console.log('$css3FadeBox -- ',e.type)
+    })
+
+    // css3 SlideUpDown
+    var $css3SlideUpDown = $('#css3SlideUpDown > #box')
+    $css3SlideUpDown.showHide({
+        css3:true,
+        js:false,
+        animation:'slideUpDown'
+    });
+    $('#css3SlideUpDown > #btn-show').on('click', function() {
+      $css3SlideUpDown.showHide('show')
+    })
+    $('#css3SlideUpDown > #btn-hide').on('click', function(){
+      $css3SlideUpDown.showHide('hide')
+    })
+    // 接收订阅
+    $css3SlideUpDown.on('show shown hide hidden', function(e) {
+      console.log('$css3SlideUpDown -- ',e.type)
+    })
+
+    // css3 SlideLeftRight
+    var $css3SlideLeftRight = $('#css3SlideLeftRight > #box')
+    $css3SlideLeftRight.showHide({
+        css3:true,
+        js:false,
+        animation:'slideLeftRight'
+    });
+    $('#css3SlideLeftRight > #btn-show').on('click', function() {
+      $css3SlideLeftRight.showHide('show')
+    })
+    $('#css3SlideLeftRight > #btn-hide').on('click', function(){
+      $css3SlideLeftRight.showHide('hide')
+    })
+    // 接收订阅
+    $css3SlideLeftRight.on('show shown hide hidden', function(e) {
+      console.log('$css3SlideLeftRight -- ',e.type)
+    })
+
+    // css3FadeSlideUpDown
+    var $css3FadeSlideUpDown = $('#css3FadeSlideUpDown > #box')
+    $css3FadeSlideUpDown.showHide({
+        css3:true,
+        js:false,
+        animation:'fadeSlideUpDown'
+    });
+    $('#css3FadeSlideUpDown > #btn-show').on('click', function() {
+      $css3FadeSlideUpDown.showHide('show')
+    })
+    $('#css3FadeSlideUpDown > #btn-hide').on('click', function(){
+      $css3FadeSlideUpDown.showHide('hide')
+    })
+    // 接收订阅
+    $css3FadeSlideUpDown.on('show shown hide hidden', function(e) {
+      console.log('$css3FadeSlideUpDown -- ',e.type)
+    })
+
+    // css3 FadeSlideLeftRight
+    var $css3FadeSlideLeftRight = $('#css3FadeSlideLeftRight > #box')
+    $css3FadeSlideLeftRight.showHide({
+        css3:true,
+        js:false,
+        animation:'fadeSlideLeftRight'
+    });
+    $('#css3FadeSlideLeftRight > #btn-show').on('click', function() {
+      $css3FadeSlideLeftRight.showHide('show')
+    })
+    $('#css3FadeSlideLeftRight > #btn-hide').on('click', function(){
+      $css3FadeSlideLeftRight.showHide('hide')
+    })
+    // 接收订阅
+    $css3FadeSlideLeftRight.on('show shown hide hidden', function(e) {
+      console.log('$css3FadeSlideLeftRight -- ',e.type)
+    })
+
+    // js fade
+    var $jsFadeBox = $('#jsFade > #box');
+    $jsFadeBox.showHide({
+        css3:false,
+        js:true,
+        animation:'fade'
+    });
+    $('#jsFade > #btn-show').on('click', function() {
+      $jsFadeBox.showHide('show')
+    })
+    $('#jsFade > #btn-hide').on('click', function(){
+      $jsFadeBox.showHide('hide')
+    })
+    // 接收订阅
+    $jsFadeBox.on('show shown hide hidden', function(e) {
+      console.log('$jsFadeBox -- ',e.type)
+    })
+
+    // js SlideUpDown
+    var $jsSlideUpDownBox = $('#jsSlideUpDown > #box');
+    $jsSlideUpDownBox.showHide({
+        css3:false,
+        js:true,
+        animation:'slideUpDown'
+    });
+    $('#jsSlideUpDown > #btn-show').on('click', function() {
+      $jsSlideUpDownBox.showHide('show')
+    })
+    $('#jsSlideUpDown > #btn-hide').on('click', function(){
+      $jsSlideUpDownBox.showHide('hide')
+    })
+    // 接收订阅
+    $jsSlideUpDownBox.on('show shown hide hidden', function(e) {
+      console.log('$jsSlideUpDownBox -- ',e.type)
+    })
+
+    // jsSlideLeftRight
+    var $jsSlideLeftRight = $('#jsSlideLeftRight > #box')
+    $jsSlideLeftRight.showHide({
+        css3:false,
+        js:true,
+        animation:'slideLeftRight'
+    });
+    $('#jsSlideLeftRight > #btn-show').on('click', function() {
+      $jsSlideLeftRight.showHide('show')
+    })
+    $('#jsSlideLeftRight > #btn-hide').on('click', function(){
+      $jsSlideLeftRight.showHide('hide')
+    })
+    // 接收订阅
+    $jsSlideLeftRight.on('show shown hide hidden', function(e) {
+      console.log('$jsSlideLeftRight -- ',e.type)
+    })
+
+    // jsFadeSlideUpDown
+    var $jsFadeSlideUpDown = $('#jsFadeSlideUpDown > #box')
+    $jsFadeSlideUpDown.showHide({
+        css3:false,
+        js:true,
+        animation:'fadeSlideUpDown'
+    });
+    $('#jsFadeSlideUpDown > #btn-show').on('click', function() {
+      $jsFadeSlideUpDown.showHide('show')
+    })
+    $('#jsFadeSlideUpDown > #btn-hide').on('click', function(){
+      $jsFadeSlideUpDown.showHide('show')
+    })
+    // 接收订阅
+    $jsFadeSlideUpDown.on('show shown hide hidden', function(e) {
+      console.log('$jsFadeSlideUpDown -- ',e.type)
+    })
+
+    // jsFadeSlideLeftRight
+    var $jsFadeSlideLeftRight = $('#jsFadeSlideLeftRight > #box')
+    $jsFadeSlideLeftRight.showHide({
+        css3:false,
+        js:true,
+        animation:'fadeSlideLeftRight'
+    });
+    $('#jsFadeSlideLeftRight > #btn-show').on('click', function() {
+      $jsFadeSlideLeftRight.showHide('show')
+    })
+    $('#jsFadeSlideLeftRight > #btn-hide').on('click', function(){
+      $jsFadeSlideLeftRight.showHide('show')
+    })
+    // 接收订阅
+    $jsFadeSlideLeftRight.on('show shown hide hidden', function(e) {
+      console.log('$jsFadeSlideLeftRight -- ',e.type)
     })
   </script>
 </body>

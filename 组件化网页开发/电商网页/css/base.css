@@ -1,7 +1,7 @@
 /* css reset */
 /*css reset*/
 	/*清除内外边距*/
-	body, h1, h2, h3, h4, h5, h6, p, hr, /*结构元素*/
+	body, h2, h3, h4, h5, h6, p, hr, /*结构元素*/
 	ul, ol, li, dl, dt, dd, /*列表元素*/
 	form, fieldset, legend, input, button, select, textarea, /*表单元素*/
 	th, td, /*表格元素*/
@@ -16,7 +16,7 @@
 		color: #333;
 		font: 12px/1 "Microsoft YaHei", Tahoma, Helvetica, Arial, SimSun, sans-serif;
 	}
-	h1, h2, h3, h4, h5, h6 {
+  h2, h3, h4, h5, h6 {
 		font-size: 100%;
 		font-weight: normal;
 	}

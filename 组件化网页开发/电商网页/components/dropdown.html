@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-06 16:48:40
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-06 17:22:33
+ * @LastEditTime: 2020-07-13 10:48:07
  * @Description: 下拉菜单组件
 -->
 <!DOCTYPE html>
@@ -15,22 +15,68 @@
   <link rel="stylesheet" href="../css/common.css">
 </head>
 <body>
-  <div class="menu dropdown">
-    <div class="dropdown-toggle">我的慕淘<i class="dropdown-arrow"></i></div>
-    <div class="dropdown-layer dropdown-left">
-    </div>
-  </div>
-  <div class="menu dropdown" data-active="menu">
-    <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow"></i></a>
+  <div class="menu dropdown fl" data-active="menu" data-load="dropdown.json">
+    <div class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></div>
     <ul class="dropdown-layer dropdown-left">
-      <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
-      <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
+      <li class="dropdown-loading"></li>
+      <!-- <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li> -->
     </ul>
   </div>
+  <div class="menu dropdown fl" data-active="menu">
+    <div class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></div>
+    <ul class="dropdown-layer dropdown-left">
+      <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
+      <!-- <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li> -->
+    </ul>
+  </div>
+  <div class="menu dropdown fl" data-active="menu">
+    <div class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></div>
+    <ul class="dropdown-layer dropdown-left">
+      <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
+      <!-- <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li> -->
+    </ul>
+  </div>
+  <!-- <button id="btn-show">显示</button>
+  <button id="btn-hide">隐藏</button> -->
   <script src="../js/jquery.js"></script>
   <script src="./js/dropdown.js"></script>
+  <script src="./js/transition.js"></script>
+  <script src="./js/showHide.js"></script>
   <script>
-    $('.dropdown').dropdown()
+    $('.dropdown').on('dropdown-show', function (e) {
+      var $this = $(this),
+          dataLoad = $this.data('load');
+      if (!dataLoad) return;
+      if (!$this.data('loaded')) {
+        var $layer = $this.find('.dropdown-layer'),
+        html = '';
+        $.getJSON(dataLoad, function (data) {
+          console.log(1);
+          setTimeout(function () {
+          for (var i = 0; i < data.length; i++) {
+            html += '<li><a href="' + data[i].url + '" target="_blank" class="menu-item">' + data[i].name + '</a></li>'
+          }
+          $layer.html(html);
+          $this.data('loaded', true);
+        }, 1000);
+        });
+      }
+    });
+    $('.dropdown').dropdown({
+      css3: true,
+      delay: 200,
+      // event: 'click'
+      // js: true,
+      // animation: 'slideUpDown'
+    })
+    $('#btn-show').on('click', function() {
+      console.log('show')
+      $('.dropdown').dropdown('show')
+    })
+    $('#btn-hide').on('click', function() {
+      console.log('hide')
+      $('.dropdown').dropdown('hide')
+    })
   </script>
   </body>
 </html>

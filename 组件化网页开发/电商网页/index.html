@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-06 15:03:50
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-06 17:58:37
+ * @LastEditTime: 2020-07-13 11:02:36
  * @Description: 
 --> 
 <!DOCTYPE html>
@@ -26,21 +26,21 @@
         </li>
       </ul>
       <ul class="fr">
-        <li class="menu dropdown fl" data-active="menu">
+        <li class="menu dropdown fl transition" data-active="menu">
           <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
             <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
             <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
           </ul>
         </li>
-        <li class="menu dropdown fl" data-active="menu">
+        <li class="menu dropdown fl transition" data-active="menu">
           <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
             <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
             <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
           </ul>
         </li>
-        <li class="menu dropdown fl" data-active="menu">
+        <li class="menu dropdown fl transition" data-active="menu">
           <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
             <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
@@ -50,7 +50,7 @@
         <li class="fl">
           <a href="#" target="_blank" class="nav-site-category link">商品分类</a>
         </li>
-        <li class="nav-sit-services menu dropdown fl" data-active="menu">
+        <li class="nav-sit-services menu dropdown fl transition" data-active="menu">
           <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
             <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
@@ -62,6 +62,17 @@
   </div>
   <script src="./js/jquery.js"></script>
   <script src="./components/js/dropdown.js"></script>
+  <script src="./components/js/transition.js"></script>
+  <script src="./components/js/showHide.js"></script>
   <script src="./js/index.js"></script>
+  <script>
+    $('.dropdown').dropdown({
+      css3: true,
+      delay: 200,
+      // event: 'click'
+      // js: true,
+      // animation: 'slideUpDown'
+    })
+  </script>
 </body>
 </html>
