@@ -1,0 +1,126 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-13 14:46:09
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-14 14:08:59
+ * @Description: API
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <video src="data/imooc.mp4" id="myVideo"></video>
+  <input type="range" min=0 max=100 value=50 id="range">
+  <div id="gogogo">快进</div>
+  <input type="button" name="" id="fullscreenNode" value="全屏">
+  <input type="button" name="" id="reloadNode" value="刷新视频播放器">
+  <script>
+    // 选中 video 标签
+    var videoNode = document.getElementById('myVideo')
+    // 设置播放源
+    videoNode.src = 'data/imooc.ogv'
+    // play
+    window.onclick = function () {
+      videoNode.play()
+    }
+    // pause
+    setTimeout(() => {
+      videoNode.pause()
+    }, 3000);
+
+    // 视频长度——分钟+秒
+    setTimeout(() => {
+      var min = parseInt(videoNode.duration / 60)
+      var sec = parseInt(videoNode.duration % 60)
+      console.log(min + ":" + sec)
+    }, 2000);
+
+    // 返回当前视频的一个播放长度
+    // setInterval(() => {
+    //   console.log(videoNode.currentTime)
+    // }, 1000);
+    // 设置播放长度
+    videoNode.currentTime = 30
+    // 快进
+    gogogo.onclick = function() {
+      videoNode.currentTime = videoNode.currentTime + 3
+    }
+    // 设置声音
+    range.oninput = function() {
+      videoNode.volume = this.value / 100
+    }
+
+    // 手动设置控件
+    videoNode.controls = true
+
+    // 手动设置视频静音
+    videoNode.muted = true
+
+    // 查看一下目前视频的状态
+    console.log(videoNode.networkState)
+
+    console.log(videoNode.currentSrc)
+
+    // 监听 ended 事件
+    videoNode.addEventListener('ended', function() {
+      console.log('视频播放结束了')
+    })
+
+    console.log(videoNode.loop)
+
+    // 设置或返回视频播放速度
+    console.log(videoNode.playbackRate) // 1
+    videoNode.playbackRate = 5
+
+    // 视频的准备信息
+    console.log(videoNode.readyState) // 0
+    setTimeout(() => {
+      console.log(videoNode.readyState) // 4
+    }, 500);
+    
+    // timeout 监听视频播放的状态
+    videoNode.addEventListener('timeupdate', function() {
+      // console.log('视频播放了~~')
+      // let allTime = parseInt(videoNode.duration / 60) + ':' + parseInt(videoNode.duration % 60)
+      // let nowTime = parseInt(videoNode.currentTime / 60) + ':' + parseInt(videoNode.currentTime % 60)
+      // console.log(nowTime + ' / ' + allTime)
+    })
+    // 当用户对视频的进度条的操作并且已经完成操作时会触发的事件
+    videoNode.onseeked = function() {
+      console.log('seeked')
+    }
+    // 当用户开始拖动进度条时就会触发的事件
+    videoNode.onseeking = function() {
+      console.log('seeking')
+    }
+
+    // volumechange 当音量更改时
+    videoNode.onvolumechange = function() {
+      console.log('onvolumechange')
+    }
+
+    fullscreenNode.onclick = function() {
+      // 兼容
+      if (videoNode.webkitRequestFullscreen) {
+        videoNode.webkitRequestFullscreen()
+      } else if (videoNode.mozRequestFullScreen) {
+        // 火狐
+        videoNode.mozRequestFullScreen()
+      }
+    }
+
+    reloadNode.onclick = function() {
+      videoNode.load()
+    }
+
+    // canplay 视频已经加载好了，可以播放了
+    videoNode.addEventListener('canplay', function() {
+      console.log('视频加载成功')
+    })
+  </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-07 13:50:13
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-10 15:15:36
+ * @LastEditTime: 2020-07-13 11:52:44
  * @Description:
  */
 (function ($) {
@@ -62,6 +62,7 @@
       show($elem, function () {
         $elem.off(transition.end).one(transition.end, function () {
           $elem.data("status", "shown").trigger("shown");
+          console.log($elem.height())
         });
         $elem.show();
         setTimeout(() => {

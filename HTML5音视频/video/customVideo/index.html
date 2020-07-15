@@ -1,0 +1,236 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-14 14:11:24
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-15 11:53:19
+ * @Description: 自定义视频播放器
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 最外层的元素 -->
+  <div class="outerNode">
+    <!-- video 元素 -->
+    <video class="videoNode" src="../data/imooc.mp4" poster="../data/poster.jpg"></video>
+    <!-- 控制器的元素 -->
+    <div class="controlsNode">
+      <!-- 播放/暂停 -->
+      <div class="playNode"></div>
+      <!-- 进度条 -->
+      <div class="lodeNode">
+        <div class="loadLeft"></div>
+        <div class="loadRight"></div>
+        <!-- 拖动进度条按钮 -->
+        <div class="crlNode"></div>
+        <!-- 进度条 -->
+        <div class="lineNode">
+          <div class="line_right"></div>
+        </div>
+      </div>
+      <!-- 时长 -->
+      <div class="timeNode">
+        <span class="now">0:00</span>
+        /
+        <span class="all">3:26</span>
+      </div>
+      <!-- 声音 -->
+      <div class="volumeNode"></div>
+      <!-- 声音进度条 -->
+      <div class="volumeLine">
+        <div class="v_Left"></div>
+        <div class="v_Right"></div>
+        <div class="v_DrigNode"></div>
+      </div>
+      <!-- 全屏 -->
+    <div class="fullNode"></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    // 播放/暂停 按钮
+    var playNode = document.getElementsByClassName('playNode')[0]
+    // 播放器
+    var video = document.getElementsByClassName('videoNode')[0]
+    // 全屏
+    var fullNode = document.querySelector('.fullNode')
+    // 目前播放事件
+    var nowNode = document.querySelector('.now')
+    // 总时间
+    var allNode = document.querySelector('.all')
+    // 视频时间进度条
+    var lineNode = document.querySelector('.lineNode')
+    // 视频时间进度按钮
+    var crlNode = document.querySelector('.crlNode')
+    // 视频时间进度条 wrap
+    var lodeNode = document.querySelector('.lodeNode')
+    // 视频是否正在播放
+    var playing = true
+    // 声音进度条 wrap
+    var volumeLine = document.querySelector('.volumeLine')
+    // 声音进度条
+    var vDrigNode = document.querySelector('.v_DrigNode')
+    // 声音圆圈
+    var volumeNode = document.querySelector('.volumeNode')
+    /**
+     * @Author: YXS
+     * @Description: 暂停/播放
+     */
+    playNode.onclick = function() {
+      // 使用 classList.toggle 来切换样式
+      playing = !playing
+      if (playing == true) {
+        video.pause()
+        this.className = 'playNode'
+      } else {
+        video.play()
+        this.className = 'pauseNode'
+      }
+      // this.classList.toggle('pauseNode')
+      // if (this.className === 'playNode') {
+      //   video.pause()
+      // } else {
+      //   video.play()
+      // }
+    }
+    /**
+     * @Author: YXS
+     * @Description: 全屏按钮事件
+     */
+    fullNode.onclick = function() {
+      // 兼容
+      if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen()
+      } else if (video.mozRequestFullScreen) {
+        // 火狐
+        video.mozRequestFullScreen()
+      } else {
+        video.requestFullscreen()
+      }
+    }
+    /**
+     * @Author: YXS
+     * @Description: 视频的总时间的计算
+     */
+    video.addEventListener('canplay', function() {
+      allNode.innerHTML = toDou(parseInt(video.duration / 60)) + ':' + toDou(parseInt(video.duration % 60));
+    })
+    /**
+     * @Author: YXS
+     * @Description: 解决事件不足 10 的问题
+     * @param {time} num 时间
+     */
+    function toDou(time) {
+      return time < 10 ? '0' + time : time
+    }
+  /**
+   * @Author: YXS
+   * @Description: 当视频播放时，需要当前的时间动起来
+   */
+  video.addEventListener('timeupdate', function() {
+    nowNode.innerHTML = toDou(parseInt(video.currentTime / 60)) + ':' + toDou(parseInt(video.currentTime % 60))
+    lineNode.style.width = video.currentTime / video.duration * 100 +'%'
+    crlNode.style.left = lineNode.offsetWidth - 3 + 'px'
+
+  }, false)
+ /**
+   * @Author: YXS
+   * @Description: 视频进度条点击事件
+   */
+  lodeNode.onmousedown = function(e) {
+    var ev = e || event
+    lineNode.style.width = (ev.offsetX < 10 ? this.style.width : ev.offsetX) + 'px'
+    crlNode.style.left = (ev.offsetX < 10 ? this.style.width : ev.offsetX) - 9 + 'px'
+    changeVideoCurrentTime()
+    return false
+  }
+  /**
+   * @Author: YXS
+   * @Description: 视频拖拽进度条按钮
+   */
+   crlNode.onmousedown = function(e) {
+     var ev = e || event
+     var l = ev.clientX - this.offsetLeft
+     document.onmousemove = function(e) {
+        var ev = e || event;
+        var needX = ev.clientX - l
+        var maxX = lodeNode.offsetWidth - 8.5
+
+        needX = needX < -8.5 ? -8.5 : needX
+        needX = needX > maxX ? maxX : needX
+        crlNode.style.left = needX + 'px'
+
+        lineNode.style.width = ((crlNode.offsetLeft + 9)/lodeNode.offsetWidth) * 100 + '%'
+        return false
+     }
+     document.onmouseup = function() {
+       document.onmousemove = document.onmouseup = null;
+       video.currentTime = video.duration * ((crlNode.offsetLeft + 9)/lodeNode.offsetWidth)
+       changeVideoCurrentTime()
+      return false
+     }
+     return false
+   }
+   /**
+    * @Author: YXS
+    * @Description: 改变视频播放进度
+    */
+   function changeVideoCurrentTime() {
+    video.currentTime = video.duration * ((crlNode.offsetLeft + 9)/lodeNode.offsetWidth)
+    if (playing) {
+      video.pause()
+      playNode.className = 'playNode'
+    } else {
+      playNode.className = 'pauseNode'
+      video.play()
+    }
+   }
+   /**
+    * @Author: YXS
+    * @Description: 声音拖拽进度条
+    */
+    vDrigNode.onmousedown = function(e) {
+     var ev = e || event
+     var l = ev.clientX - this.offsetLeft
+     document.onmousemove = function(e) {
+       var ev = e || event
+       var needX = ev.clientX - l
+       var maxX = volumeLine.offsetWidth - 2.5
+
+       needX = needX < -2.5 ? -2.5 : needX
+       needX = needX > maxX ? maxX : needX
+       vDrigNode.style.left = needX + 'px'
+       changeVideoVolume()
+     }
+     document.onmouseup = function(e) {
+       document.onmousemove = document.onmouseup = null
+     }
+    return false
+   }
+
+  /**
+   * @Author: YXS
+   * @Description: 声音进度条点击事件
+   */
+  volumeLine.onmousedown = function(e) {
+    var ev = e || event
+    vDrigNode.style.left = (ev.offsetX < 10 ? this.style.width : ev.offsetX) - 2.5 + 'px'
+    changeVideoVolume()
+    return false
+  }
+  /**
+   * @Author: YXS
+   * @Description: 改变视频声音
+   */
+  function changeVideoVolume() {
+    var volume = ((vDrigNode.offsetLeft + 2) / volumeLine.offsetWidth) > 1 ? 1 : (vDrigNode.offsetLeft + 2) / volumeLine.offsetWidth
+    volume = volume < 0 ? 0 : volume
+    video.volume = volume
+  }
+  </script>
+</body>
+</html>

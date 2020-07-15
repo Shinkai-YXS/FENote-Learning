@@ -1,0 +1,28 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-13 13:59:07
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-13 14:46:32
+ * @Description: 简单属性
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <video src="data/imooc.mp4" controls width="300" height="200" autoplay="autoplay" muted></video>
+  <br>
+  <!-- 若浏览器支持 video 标签，不会展示文字部分 -->
+  <video src="data/imooc.webm" controls loop>您的浏览器不支持此插件，请升级浏览器</video>
+  <br>
+  <!-- source 标签可以放入 src，若播放失败，video 标签会继续播放下一个 source 标签，直到成功为止。 -->
+  <video src="data/imooc.ogv" controls poster="data/poster.jpg">
+    <source src="data/imooc.webm">
+    <source src="data/imooc.mp4">
+    <source src="data/imooc.ogv">
+  </video>
+</body>
+</html>

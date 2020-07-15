@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-06 15:03:50
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-13 11:02:36
+ * @LastEditTime: 2020-07-13 11:35:30
  * @Description: 
 --> 
 <!DOCTYPE html>
@@ -34,45 +34,36 @@
           </ul>
         </li>
         <li class="menu dropdown fl transition" data-active="menu">
-          <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
+          <a href="#" target="_blank" class="dropdown-toggle link">收藏夹<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
-            <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
-            <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
+            <li><a href="#" target="_blank" class="menu-item">收藏的宝贝</a></li>
+            <li><a href="#" target="_blank" class="menu-item">收藏的店铺</a></li>
           </ul>
         </li>
-        <li class="menu dropdown fl transition" data-active="menu">
-          <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
+        <li class="menu dropdown fl transition" data-active="menu" data-load="js/dropdownSeller.json">
+          <a href="#" target="_blank" class="dropdown-toggle link">商品分类<i class="dropdown-arrow icon transition">&#xe609;</i></a>
           <ul class="dropdown-layer dropdown-left">
-            <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
-            <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
+            <li class="dropdown-loading"></li>
           </ul>
         </li>
         <li class="fl">
-          <a href="#" target="_blank" class="nav-site-category link">商品分类</a>
+          <a href="#" target="_blank" class="nav-site-category link">卖家中心</a>
         </li>
-        <li class="nav-sit-services menu dropdown fl transition" data-active="menu">
-          <a href="#" target="_blank" class="dropdown-toggle link">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
-          <ul class="dropdown-layer dropdown-left">
-            <li><a href="#" target="_blank" class="menu-item">已买到的宝贝</a></li>
-            <li><a href="#" target="_blank" class="menu-item">我的足迹</a></li>
+        <li class="nav-site-service menu dropdown fl" data-active="menu">
+          <a href="###" target="_blank" class="dropdown-toggle link transition">联系客服<i class="dropdown-arrow icon transition">&#xe609;</i></a>
+          <ul class="dropdown-layer dropdown-right">
+              <li><a href="###" target="_blank" class="menu-item">消费者客服</a></li>
+              <li><a href="###" target="_blank" class="menu-item">卖家客服</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
   <script src="./js/jquery.js"></script>
-  <script src="./components/js/dropdown.js"></script>
   <script src="./components/js/transition.js"></script>
   <script src="./components/js/showHide.js"></script>
+  <script src="./components/js/dropdown.js"></script>
+
   <script src="./js/index.js"></script>
-  <script>
-    $('.dropdown').dropdown({
-      css3: true,
-      delay: 200,
-      // event: 'click'
-      // js: true,
-      // animation: 'slideUpDown'
-    })
-  </script>
 </body>
 </html>
