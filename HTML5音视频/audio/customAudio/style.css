@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.outerNode {
+  width: 505px;
+  height: 406px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #a6a18d;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #a6a18d;
+}
+.outerNode .innerNode {
+  width: 503px;
+  height: 405px;
+  border-top: 1px solid #e1d1b9;
+  border-left: 1px solid #ceccbf;
+  border-right: 1px solid #ceccbf;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.outerNode .innerNode .topNode {
+  width: 100%;
+  height: 198px;
+  border-bottom: 1px solid #787463;
+  background: url(./music/pic/fmt01.jpg) center center;
+  background-size: cover;
+  transition: 0.7s;
+}
+.outerNode .innerNode .lineNode {
+  position: relative;
+  width: 100%;
+  height: 46px;
+  border-top: 1px solid #f9f7ee;
+  border-bottom: 1px solid #a29d8a;
+  background: url(./images/linebg.jpg) repeat-x;
+}
+.outerNode .innerNode .lineNode .progressNode {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 18px;
+  overflow: hidden;
+  background: url(./images/progressbg.jpg) repeat-x;
+}
+.outerNode .innerNode .lineNode .progressNode .progressLeft {
+  width: 7px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: url(./images/leftNode.jpg);
+}
+.outerNode .innerNode .lineNode .progressNode .progressRight {
+  width: 7px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  right: 0;
+  background: url(./images/rightNode.jpg);
+}
+.outerNode .innerNode .lineNode .progressNode .progress {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  height: 10px;
+  width: 0%;
+  border: 1px solid #746873;
+  box-shadow: 0 0 2px #746873;
+  border-radius: 6px;
+  background: url(./images/green_bg.png) repeat-x;
+}
+.outerNode .innerNode .bottomNode {
+  position: relative;
+  width: 100%;
+  height: 157px;
+  border-top: 1px solid #a29d8a;
+  background: url(./images/bottomBg.jpg) repeat-x;
+}
+.outerNode .innerNode .bottomNode .btnwrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50px);
+  width: 53%;
+  height: 100px;
+  margin: 0 auto;
+}
+.outerNode .innerNode .bottomNode .btnwrap .lastNode {
+  width: 75px;
+  height: 74px;
+  margin-right: 10px;
+  background: url(./images/lastBg.png) no-repeat;
+}
+.outerNode .innerNode .bottomNode .btnwrap .playNode {
+  width: 95px;
+  height: 94px;
+  margin-right: 10px;
+  background: url(./images/playNode.png) no-repeat;
+}
+.outerNode .innerNode .bottomNode .btnwrap .nextNode {
+  width: 75px;
+  height: 74px;
+  background: url(./images/rightBg.png) no-repeat;
+}
+.outerNode .innerNode .bottomNode .btnwrap .btnsPosition {
+  position: relative;
+  top: 55%;
+  transform: translateY(-50%);
+  float: left;
+  cursor: pointer;
+}
+.outerNode .innerNode .bottomNode .volumeNode {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  float: left;
+  cursor: pointer;
+  width: 37px;
+  height: 32px;
+  right: 43px;
+  background: url(./images/volume.png) no-repeat;
+}
+.outerNode .innerNode .bottomNode .noVolumeNode {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  float: left;
+  cursor: pointer;
+  width: 37px;
+  height: 32px;
+  right: 43px;
+  background: url(./images/no_volume.png) no-repeat;
+}
+
