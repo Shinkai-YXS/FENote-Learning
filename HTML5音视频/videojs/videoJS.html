@@ -1,0 +1,77 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-17 10:36:52
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-17 14:13:12
+ * @Description: 
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video.js</title>
+  <link href="https://cdn.staticfile.org/video.js/7.9.1/video-js.min.css" rel="stylesheet" />
+  <script src="https://cdn.staticfile.org/video.js/7.9.1/video.min.js"></script>
+</head>
+<body>
+  <!--
+    必须写上 class 为 video-js，表示使用了三方控件的样式
+    vjs-big-play-centered 表示播放按钮在中间展示
+  -->
+  <video id="my-video"
+         class="video-js vjs-big-play-centered"
+         controls data-setup='{}'
+         preload="auto"
+         poster="../video/data/poster.jpg">
+    <source src="../video/data/imooc.mp4">
+  </video>
+
+  <script type="text/javascript">
+    var myVideo = videojs('my-video');
+    // 设置播放进度，注意这里要小于视频时长，否则无效
+    myVideo.currentTime(100)
+    // 已经可以播放了，类似于 canplay
+    myVideo.ready(function() {
+      // this.play() 需要经过事件触发
+      console.log(this.currentTime()) // 0
+
+      // 这里只是能播放了，并不能获取视频的某些资源，比如总时长
+      console.log(this.duration()) // NaN
+
+      console.log(this.buffered)
+      // 设置声音
+      this.volume(0.5)
+      // 获取声音
+      console.log(myVideo.volume()) // 0.5
+
+      // 设置视频宽度/高度
+      myVideo.width(800)
+      myVideo.height(400)
+      // 获取视频宽度/高度
+      console.log(myVideo.width()) // 800
+      console.log(myVideo.height()) // 400
+    })
+
+    myVideo.on('ended', function() {
+      console.log(1111)
+    })
+
+    myVideo.on('pause', function() {
+      console.log('暂停了')
+    })
+
+    myVideo.on('play', function() {
+      console.log('播放')
+    })
+
+    myVideo.on('volumechange', function() {
+      console.log('声音发生改变时')
+    })
+
+    myVideo.on('timeupdate', function() {
+      console.log('视频正在播放中')
+    })
+  </script>
+</body>
+</html>
