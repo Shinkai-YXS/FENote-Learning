@@ -1,0 +1,31 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-22 11:10:14
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-22 11:19:44
+ * @Description: 缩放笔记尺控件
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>缩放比例尺控件</title>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42&plugin=AMap.Scale,AMap.ToolBar"></script>
+  <style>
+    *{margin: 0; padding: 0;}
+    #container {position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100vw; height: 100vh;}
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    var map = new AMap.Map('container', {
+      zoom: 18, // 地图缩放级别级别
+      center: [104.065746,30.657455] // 初始化地图的中心点
+    });
+    map.addControl(new AMap.Scale())
+    map.addControl(new AMap.ToolBar())
+  </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-17 16:16:37
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-22 10:13:45
+ * @Description: 
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的第一个地图</title>
+  <!-- <script>
+    window.onLoad  = function(){
+       var map = new AMap.Map('container');
+    }
+    var url = 'https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42&callback=onLoad';
+    var jsapi = document.createElement('script');
+    jsapi.charset = 'utf-8';
+    jsapi.src = url;
+    document.head.appendChild(jsapi);
+  </script> -->
+  <!-- <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42&callback=init"></script> -->
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+  <style>
+    *{margin: 0; padding: 0;}
+    ul{list-style: none;}
+    body {position: relative;}
+    #container {position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100vw; height: 100vh;}
+    .setRoom {
+      position: absolute;
+      top: 20px;
+      left: 150px;
+      background: #fff;
+      z-index: 9;
+    }
+    #searchNode {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="setRoom">
+    <input type="number" id="roomValue">
+    <input type="button" name="" id="setRoomBtn" value="设置缩放">
+    <br/>
+    <input type="text" name="" id="lng">
+    <input type="text" name="" id="lat">
+    <input type="button" name="" id="setCenterBtn" value="设置中心点">
+    <br />
+    <input type="text" id="searchInput">
+    <input type="button" name="" id="searchButton" value="搜索">
+    <ul id="addressNode"></ul>
+  </div>
+  <div id="searchNode"></div>
+  <script>
+    var map = new AMap.Map('container', {
+      zoom: 8, // 地图缩放级别级别
+      center: [106.520891,29.529042] // 初始化地图的中心点
+    });
+    // 获取地图缩放级别
+    console.log(map.getZoom()) // 14
+    // 获取地图中心点
+    console.log(map.getCenter().toString()) // 120, 30
+    /**
+    // 地图移动停止时
+    map.on('moveend', function() {
+      // 获取地图缩放级别
+      console.log(map.getZoom())
+      // 获取地图中心点
+      console.log(map.getCenter().toString())
+    })
+     */
+    map.on('zoomend', function() {
+      // 获取地图缩放级别
+      console.log(map.getZoom())
+      // 获取地图中心点
+      console.log(map.getCenter().toString())
+    })
+
+    // 设置地图缩放级别
+    // setTimeout(() => {
+    //   // map.setZoom(15)
+    //   map.setZoomAndCenter(12, [120, 32])
+
+    // }, 5000);
+    setRoomBtn.onclick = function() {
+      // map.setZoom(roomValue.value)
+      console.log(map.getZoom())
+    }
+    setCenterBtn.onclick = function() {
+      // map.setCenter([lng.value, lat.value])
+    }
+
+    // 获取行政区
+    map.getCity(function(info) {
+      console.log(info)
+    })
+
+    // 设置行政区
+    map.setCity('成都市')
+
+    // 获取地图的线上范围
+    console.log(map.getBounds())
+    // 设置地图的线上范围
+    // var myBounds = new AMap.Bounds([106.520891,29.529042], [120.520891,32.529042])
+    // map.setBounds(myBounds)
+
+    // 限制地图展示区域
+    //  map.setLimitBounds(myBounds)
+
+    // 清除地图限制
+    // map.clearLimitBounds()
+
+    // 地图的平移
+    setTimeout(() => {
+      // map.panBy(50, 100)
+    }, 5000);
+
+    // 平移到指定坐标
+    setTimeout(() => {
+      // map.panTo([120.520891,32.529042])
+    }, 10000);
+
+    // 获取鼠标的经纬度
+    // map.on('click', function(e) {
+    //   console.log(e.lnglat)
+    // })
+
+    // 设置鼠标的样式
+    map.setDefaultCursor('pointer')
+
+    /**
+     * @Author: YXS
+     * @Description: 第一种
+     */
+    // 加载插件，Autocomplete 是地图加载完毕会触发的回调函数
+    // AMap.plugin('AMap.Autocomplete', function(){
+    //   // 搜索地址
+    //   searchInput.oninput = function() {
+    //     addressNode.innerHTML = ''
+    //     if (this.value === '') return
+    //     new AMap.Autocomplete().search(this.value, function(status, data) {
+    //       console.log(data)
+    //       for(var i = 0; i < data.tips.length; i++) {
+    //         var li = document.createElement('li')
+    //         // 没有经纬度就不加载在列表上
+    //         if(!data.tips[i].location) continue
+    //         li.innerHTML = data.tips[i].name
+    //         li.lat = data.tips[i].location.lat
+    //         li.lng = data.tips[i].location.lng
+    //         addressNode.appendChild(li)
+    //         li.onclick = function() {
+    //           // 跳转到展示地址
+    //           map.setCenter([this.lng, this.lat])
+    //           map.setZoom(12)
+    //         }
+    //       }
+    //     })
+    //   }
+    // })
+
+    // new AMap.Autocomplete({
+    //   input: 'searchInput'
+    // })
+
+  // 输入提示插件 与 POI搜索插件 结合
+  // var searchNode = new AMap.Autocomplete({input:'searchInput'}
+  // )
+  // var placeSearch = new AMap.PlaceSearch({map: map})
+  // AMap.event.addListener(searchNode, 'select', function(e) {
+  //   placeSearch.search(e.poi.name)
+  // })
+
+  AMap.service(['AMap.PlaceSearch'], function() {
+    console.log('------')
+    searchButton.onclick = function() {
+      console.log('searchButton')
+      new AMap.PlaceSearch({
+        type: '公寓',
+        pageSize: 5,
+        pageIndex: 1,
+        city: '成都',
+        citylimit: true,
+        map: map,
+        panel: 'searchNode'
+      }).searchNearBy('成都', [104.25445,30.79041], 1000, function(e) {
+        console.log(e)
+      })
+    }
+  })
+  </script>
+</body>
+</html>

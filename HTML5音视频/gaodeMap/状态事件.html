@@ -1,0 +1,33 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-22 17:28:57
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-22 17:30:20
+ * @Description: 
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>状态事件</title>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42"></script>
+  <style>
+    *{margin: 0; padding: 0;}
+    #container {position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100vw; height: 100vh;}
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="panel"></div>
+  <script>
+    var map = new AMap.Map('container', {
+      zoom: 18, // 地图缩放级别级别
+      center: [104.065746,30.657455] // 初始化地图的中心点
+    });
+    map.on('complete', function() {
+      console.log('地图加载完成')
+    })
+  </script>
+</body>
+</html>

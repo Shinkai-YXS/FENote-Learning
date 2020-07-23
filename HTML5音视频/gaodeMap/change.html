@@ -1,0 +1,40 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-22 11:23:44
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-22 11:42:42
+ * @Description: 地图类型转换
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地图类型转换</title>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=4d7f0ba72f421ebaba7c0ee60a915c42&plugin=AMap.ControlBar"></script>
+  <style>
+    *{margin: 0; padding: 0;}
+    #container {position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100vw; height: 100vh;}
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    var map = new AMap.Map('container', {
+      zoom: 18, // 地图缩放级别级别
+      center: [104.065746,30.657455], // 初始化地图的中心点
+      viewMode: '3D', // 地图模式
+      pitch: 90, // 地图俯仰角度，有效范围 0 度- 83 度
+      buildingAnimation: true // 建筑物是否带动画
+    });
+    map.addControl(new AMap.ControlBar({
+      showZoomBar: true, //
+      //showControlButton: false, 可以取消倾斜旋转角度的按钮
+      poisiton: {
+        right: '50px',
+        top: '30px'
+      }
+    }))
+  </script>
+</body>
+</html>
