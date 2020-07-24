@@ -1,0 +1,50 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-23 16:46:48
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-23 17:15:09
+ * @Description: 带过期机制的 localStorage
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>带过期机制的 localStorage</title>
+</head>
+<body>
+  <div>
+    存储数据：
+    <input type="text" name="" id="need">
+    存储数据的时间：
+    <input type="text" name="" id="timer">
+    <input type="button" id="save" value="存储">
+    <br>
+    数据展示：
+    <span id="span"></span>
+
+    <script>
+      let now = new Date(), localTimer = localStorage.timer
+
+      // 判断时间
+      if (localTimer) {
+        if (now.getTime() > new Date(Number(localTimer)).getTime()) {
+          span.innerHTML = ''
+          localStorage.clear()
+        } else if (localStorage.mmy) {
+          span.innerHTML = localStorage.mmy
+        }
+      } else if (localStorage.mmy) {
+        span.innerHTML = localStorage.mmy
+      }
+      save.onclick = function() {
+        localStorage.setItem('mmy', need.value)
+        span.innerHTML = localStorage.mmy
+        // 存储时间，以分钟为单位
+        let date = new Date(), saveTime = date.setTime(date.getTime() + Number(timer.value) * 1000 * 60);
+        localStorage.setItem('timer', saveTime)
+      }
+    </script>
+  </div>
+</body>
+</html>

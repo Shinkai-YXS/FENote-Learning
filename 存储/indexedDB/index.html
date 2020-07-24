@@ -1,0 +1,54 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-23 17:57:07
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-24 16:14:07
+ * @Description: 
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var db = null;
+    // 创建名为 testDB ，版本号为 1 的数据库
+    var request = indexedDB.open('testDB1', 4)
+    // 数据库创建/打开成功回调
+    request.onsuccess = function() {
+      console.log('创建数据库成功')
+    }
+    // 数据库创建失败回调
+    request.onerror = function(e) {
+      console.log('数据库创建失败')
+    }
+
+    // 版本号升级回调
+    request.onupgradeneeded = function(event) {
+      console.log('版本号升级了', event)
+      
+      db = request.result;
+      console.log(db)
+      db.createObjectStore('testDB1', {keyPath: 'id'})
+      console.log(db)
+    }
+    setTimeout(() => {
+      var json = {
+        "id": 1001,
+        "name": "xs",
+        "age": "18"
+      }
+      console.log(db)
+      var dbb = request.result;
+      var transaction = dbb.transaction('test3','readwrite');
+		  var store = transaction.objectStore('test3');
+      // var transaction = db.transaction('testDB1', 'readwrite').objectStore('test1').add(json)
+      // var store = transaction.objectStore('test1')
+      store.add(json)
+    }, 500);
+  </script>
+</body>
+</html>

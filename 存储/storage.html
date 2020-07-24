@@ -1,0 +1,45 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-23 15:09:25
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-23 16:00:40
+ * @Description: localStorage
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(window.localStorage)
+
+    localStorage.setItem('leo', '23')
+    console.log(localStorage.getItem('leo')) // 23
+    localStorage.leo = 25
+    console.log(localStorage.leo) // 25
+    localStorage.removeItem('leo')
+
+    sessionStorage.setItem('ses', 'test')
+    console.log(sessionStorage.getItem('ses')) // test
+    sessionStorage.ses = 'test1'
+    console.log(sessionStorage.ses) // test1
+    sessionStorage.removeItem('ses')
+
+    sessionStorage.setItem('sky', 31)
+    sessionStorage.setItem('busy', 19)
+    sessionStorage.setItem('color', "blue")
+    localStorage.setItem('test', 31)
+    localStorage.setItem('candy', 19)
+    localStorage.setItem('mmy', "blue")
+    console.log(localStorage.length)
+
+    localStorage.clear()
+    sessionStorage.clear()
+
+    localStorage.setItem('a', [1,2,3])
+  </script> 
+</body>
+</html>
