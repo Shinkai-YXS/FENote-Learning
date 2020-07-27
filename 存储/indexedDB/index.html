@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-23 17:57:07
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-24 16:14:07
+ * @LastEditTime: 2020-07-24 16:47:42
  * @Description: 
 --> 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
     // 版本号升级回调
     request.onupgradeneeded = function(event) {
       console.log('版本号升级了', event)
-      
+
       db = request.result;
       console.log(db)
       db.createObjectStore('testDB1', {keyPath: 'id'})
