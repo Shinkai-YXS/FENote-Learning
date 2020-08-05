@@ -1,0 +1,33 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-07-30 17:33:24
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-07-31 15:16:28
+ * @Description: 视口
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @Author: YXS
+         * @Description: 获取视口宽度
+         */
+        console.log(window.innerWidth)
+        console.log(document.documentElement.clientWidth)
+        console.log(document.documentElement.getBoundingClientRect().width)
+        // 考虑兼容性，可以这样写
+        let viewWidth = window.innerWidth || document.documentElement.clientWidth || document.documentElement.getBoundingClientRect().width
+        /**
+         * @Author: YXS
+         * @Description: 获取设备像素比
+         */
+        console.log(window.devicePixelRatio)
+    </script>
+</body>
+</html>

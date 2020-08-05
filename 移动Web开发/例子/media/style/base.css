@@ -1,0 +1,30 @@
+/*
+ * @Author: YXS
+ * @Date: 2020-08-04 16:18:27
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-08-04 16:20:48
+ */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 14px;
+}
+li {
+    list-style: none;
+}
+a {
+    font-size: 14px;
+    columns: #363636;
+    text-decoration: none;
+}
+a:hover {
+    color: #1428a0;
+}
+img {
+    vertical-align: top;
+    width: 100%;
+    border: none;
+}
