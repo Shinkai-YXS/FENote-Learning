@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件代理</title>
+</head>
+<body>
+    <div id="div">
+        <a href="#">a1</a>
+        <a href="#">a2</a>
+        <a href="#">a3</a>
+        <a href="#">a4</a>
+        <button>
+            点击增加一个 a 标签
+        </button>
+    </div>
+    <script>
+        const div = document.getElementById('div')
+        div.addEventListener('click', e => {
+            e.preventDefault() // 阻止默认行为
+            const target = e.target
+            // 判断
+            if (e.srcElement.nodeName === 'A') {
+                alert(target.innerHTML)
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-10-22 15:32:35
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-10-22 16:01:11
+ * @Description: 手写深度比较 loadash.isEqual
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isEqual</title>
+</head>
+<body>
+    <script>
+        const obj1 = {a: 10, b: {x: 100, y: 200}}
+        const obj2 = {a: 10, b: {x: 100, y: 200}}
+        console.log(obj1 === obj2) // false
+
+        /**
+         * @Author: YXS
+         * @Description: 判断是否是对象或数组
+         * @param {obj} [object Object]
+         */
+        function isObject(obj) {
+            return typeof obj === 'object' && obj !== null
+        }
+        /**
+         * @Author: YXS
+         * @Description: 判断两个对象或数组是否相等
+         * @param {obj1,obj2} [object Object]
+         */
+        function isEqual(obj1, obj2) {
+            // 不是对象，就是值类型（注意，参与 equal 的一般不会是函数）
+            if (!isObject(obj1) || !isObject(obj2)) return obj1 === obj2
+
+            // 判断参数是否是同一个对象或数组
+            if (obj1 === obj2) return true
+
+            // 两个都是对象或数组，而且不相等
+            // 1.先取出 obj1 和 obj2 的 keys，比较个数，这里 Object.keys() 对于数组也有作用，返回数组的 index
+            const obj1Keys = Object.keys(obj1)
+            const obj2Keys = Object.keys(obj2)
+            if (obj1Keys.length !== obj2Keys.length) return false
+
+            // 2. 以 obj1 为基准，和 obj2 依次递归比较，for...in 适用于对象也适用于数组
+            for (let key in obj1) {
+                // 比较当前 key 的 val —— 递归
+                const res = isEqual(obj1[key], obj2[key])
+
+                if (!res) return false
+            }
+
+            // 3. 全相等
+            return true
+        }
+
+        console.log(isEqual(obj1, obj2))
+        const arr1 = [{a: 10, b: {x: 100, y: 200}}, 10, 20]
+        const arr2 = [{a: 10, b: {x: 100, y: 300}}, 10, 20]
+        console.log(isEqual(arr1, arr2))
+    </script>
+</body>
+</html>

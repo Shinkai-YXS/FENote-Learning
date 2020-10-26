@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+<body>
+    <script>
+        // 函数作为返回值
+        function create() {
+            const a = 100
+            return function() {
+                console.log(a)
+            }
+        }
+        const fn = create()
+        const a = 200
+        fn()
+
+        // 函数作为参数被传递
+        function print(fn) {
+            const b = 200
+            fn()
+        }
+        const b = 100
+        function fn1() {
+            console.log(b)
+        }
+        print(fn1)
+
+        // 所有的自由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地方！
+
+
+        // 闭包隐藏数据，只提供 API
+        function createCache() {
+            // 闭包中的数据，被隐藏，不被外界访问
+            const data = {}
+            return {
+                set: function(key, val) {
+                    data[key] = val
+                },
+                get: function(key) {
+                    return data[key]
+                }
+            }
+        }
+        const test = createCache()
+        test.set('a', '我是数据')
+        console.log(test.get('a')) // 我是数据 
+    </script>
+</body>
+</html>

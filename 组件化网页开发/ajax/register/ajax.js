@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-02 15:12:05
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-02 16:59:07
+ * @LastEditTime: 2020-10-10 11:02:27
  * @Description: 手写 ajax
  */
 var $ = {
@@ -13,7 +13,7 @@ var $ = {
         async = typeof(options.async) == "undefined" ? true : options.async,
         data = options.data || null,
         success = options.success, // ajax 请求成功的回调函数
-        fail = options.fail, // 请求失败回调函数 
+        fail = options.fail, // 请求失败回调函数
         params = ''; // 参数字符串
     // 将 data 的对象字面量的形式转换为字符串形式
     if (data) {

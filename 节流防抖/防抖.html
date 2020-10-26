@@ -1,0 +1,53 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-10-21 10:22:36
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-10-21 11:52:22
+ * @Description: 防抖
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+<body>
+    <input type="text" id="input1">
+    <script>
+        const input1 = document.getElementById('input1')
+        // let timer = null
+        // input1.addEventListener('keyup', function() {
+        //     if (timer) {
+        //         clearTimeout(timer)
+        //     }
+        //     timer = setTimeout(() => {
+        //         console.log(input1.value) // 模拟触发change事件
+        //         // 清空定时器
+        //         timer = null
+        //     }, 500)
+        // })
+
+        /**
+         * @Author: YXS
+         * @Description: 防抖
+         * @param {fn} 回调函数
+         * @param {delay} 延迟时间
+         */
+        function debounce(fn, delay = 500) {
+            // timer 是在闭包中的
+            let timer = null
+            return function() {
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments)
+                    timer = null
+                }, delay);
+            }
+        }
+        input1.addEventListener('keyup', debounce(() => {
+            console.log(input1.value)
+        }), 300)
+    </script>
+</body>
+</html>

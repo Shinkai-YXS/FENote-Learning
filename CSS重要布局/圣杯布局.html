@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圣杯布局</title>
+    <style type="text/css">
+       body { min-width: 550px; text-align: center; font-size: 24px; color: #fff;}
+       #header {background: royalblue;padding: 10px 0;}
+       #container {padding-left: 200px;padding-right: 150px;}
+       #center {background: pink;width: 100%;}
+       #left {
+           /* position 值为 relative 时，设置 top,right,left,bottom 是相对于自身的，不会影响其他元素 */
+           position: relative;background: paleturquoise;width: 200px;margin-left: -100%;right: 200px;}
+       #right {background: palegoldenrod;width: 150px;margin-right: -150px;}
+       #footer {background: royalblue;padding: 10px 0;}
+       .column {float: left;}
+       /* 手写清除浮动 */
+       .clearfix:after {content: '';display: table;clear: both;}
+    </style>
+</head>
+<body>
+    <div id="header">this is header</div>
+    <div id="container" class="clearfix">
+        <div id="center" class="column">this is center</div>
+        <div id="left" class="column">this is left</div>
+        <div id="right" class="column">this is right</div>
+    </div>
+    <div id="footer">this is footer</div>
+</body>
+</html>

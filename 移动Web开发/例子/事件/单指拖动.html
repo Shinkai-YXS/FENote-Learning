@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单指拖动</title>
+    <style>
+        body{height: 10000px;}
+        .backtop {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            background: pink;
+            color: purple;
+            border-radius: 100%;
+            font-size: 30px;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" id="backtop" class="backtop">&uarr;</a>
+    <script>
+        console.log(navigator.userAgent)
+        drag(backtop, {x:true, y:true})
+        function drag(el, options) {
+            // x 代表x轴是否能拖动，默认为 true
+            options.x = typeof options.x !== 'undefined' ? options.x : true
+            // y 代表y轴是否能拖动，默认为 false
+            options.y = typeof options.y !== 'undefined' ? options.y : false
+            if (!options.x && !options.y) return
+            var curPoint = {x: 0, y: 0}
+            var startPoint = {}
+            var isTouchMove = false
+            el.addEventListener('touchstart', handleStart, false)
+            el.addEventListener('touchmove', handleMove, false)
+            el.addEventListener('touchend', handleEnd, false)
+            function handleStart(event) {
+                var touch = event.changedTouches[0]
+                startPoint.x = touch.pageX
+                startPoint.y = touch.pageY
+            }
+            function handleMove (event) {
+                event.preventDefault()
+                isTouchMove = true
+                var touch = event.changedTouches[0]
+                var diffPoint = {}
+                var movePoint = {x: 0, y: 0}
+                diffPoint.x = touch.pageX - startPoint.x
+                diffPoint.y = touch.pageY - startPoint.y
+                if (options.x) {
+                    movePoint.x = diffPoint.x + curPoint.x
+                }
+                if (options.y) {
+                    movePoint.y = diffPoint.y + curPoint.y
+                }
+                move(el, movePoint.x, movePoint.y)
+            }
+            function handleEnd(event) {
+                if (!isTouchMove) return
+                var touch = event.changedTouches[0]
+                curPoint.x += touch.pageX - startPoint.x
+                curPoint.y += touch.pageY - startPoint.y
+                isTouchMove = false
+            }
+            function move(el, x, y) {
+                x = x || 0;
+                y = y || 0;
+                el.style.transform = 'translate3d(' + x + 'px,' + y + 'px, 0)'
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class</title>
+</head>
+<body>
+    <script>
+        // 类
+        class Student {
+            constructor(name, number) {
+                // this 指当前正在构建的实例
+                this.name = name
+                this.number = number
+            }
+            sayHi () {
+                console.log(`姓名：${this.name}，学号：${this.number}`)
+            }
+        }
+        // 通过类声明对象/实例
+        const xl = new Student('夏洛', 1001)
+        console.log(xl.name) // 夏洛
+        console.log(xl.number) // 1001
+        xl.sayHi() // 姓名：夏洛，学号：1001
+        console.log(Student.name) // Student
+        console.log(xl.__proto__)
+        console.log(Student.prototype)
+        console.log(xl.__proto__ === Student.prototype) // true
+
+        // 匿名类
+        const Student1 = class {
+            constructor(name, number) {
+                this.name = name;
+                this.number = number
+            }
+            sayHi() {
+                console.log(`hello, my name is ${this.name}, my number is ${this.number}`)
+            }
+        }
+        const mdm = new Student1('马冬梅', 1002)
+        console.log(mdm.name) // 马冬梅
+        console.log(mdm.number) // 1002
+        mdm.sayHi() // hello, my name is 马冬梅, my number is 马冬梅
+        console.log(Student1.name) // Student1
+
+        // 类具名
+        const Student3 = class Student4 {
+            constructor(name, number) {
+                this.name = name
+                this.number = number
+            }
+            sayHi() {
+                console.log(`我是类具名，${this.name}，${this.number}`)
+            }
+        }
+        const whm = new Student3('王红梅', 1003)
+        console.log(whm.name) // 王红梅
+        console.log(whm.number) // 1003
+        whm.sayHi() // 我是类具名，王红梅，1003
+        console.log(Student3.name) // Student4
+    </script>
+</body>
+</html>

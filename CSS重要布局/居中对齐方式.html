@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid #fff;
+            background: pink;
+            font-size: 18px;
+            color: #fff;
+            margin: 10px;
+            padding: 10px;
+        }
+        .inline {
+            text-align: center;
+        }
+        .block {
+            margin: auto;
+        }
+        .absolute-cantainer {
+            position: relative;
+            height: 200px;
+        }
+        .absolute {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background: peru;
+            left: 50%;
+            margin-left: -150px;
+            /* transform: translateX(-50%); */
+        }
+
+        .box1 {
+            border: 1px solid #fff;
+            background: pink;
+            font-size: 18px;
+            color: #fff;
+            margin: 10px;
+            padding: 10px;
+            height: 100px;
+        }
+        .box1 .inline {line-height: 100px;}
+        .absolute1 {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background: peru;
+            /* 方法一 */
+            /* top: 50%;
+            transform: translateY(-50%); */
+            /* 方法二 */
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>水平居中</h1>
+        <div class="box inline">
+            <span class="inline">inline 元素</span>
+        </div>
+        <div class="box inline">
+            <div>block 元素</div>
+        </div>
+        <div class="box absolute-cantainer">
+            <div class="absolute">absolute 元素</div>
+        </div>
+    </div>
+    <div>
+        <h1>垂直居中</h1>
+        <div class="box1">
+            <span class="inline">inline 元素</span>
+        </div>
+        <div class="box1 absolute-cantainer">
+            <div class="absolute1">absolute</div>
+        </div>
+    </div>
+</body>
+</html>

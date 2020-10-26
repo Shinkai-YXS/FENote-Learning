@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-07-31 16:59:05
  * @LastEditors: YXS
- * @LastEditTime: 2020-07-31 17:59:34
+ * @LastEditTime: 2020-09-09 14:34:35
  * @Description:
 -->
 <!DOCTYPE html>
@@ -184,6 +184,9 @@
         .box-10 .box-item {
             flex-shrink: 1;
         }
+        .box-10 {
+            width: 800px;
+        }
 
         .box-10 .shrink {
             flex-shrink: 0;
@@ -197,7 +200,7 @@
 
         /*5、flex 属性*/
         .box-12 .box-item {
-            flex: 1;
+            flex: none;
             /*flex: 1 1 auto;
                 flex: auto;*/
         }
@@ -687,10 +690,9 @@
             }
         </p>
         <div class="box box-13">
-            <div class="box-item start">1</div>
+            <div class="box-item start">1<div>flex-start</div></div>
             <div class="box-item">2</div>
-            <div class="box-item end">3<div>flex-end</div>
-            </div>
+            <div class="box-item end">3<div>flex-end</div></div>
             <div class="box-item">4</div>
         </div>
     </div>

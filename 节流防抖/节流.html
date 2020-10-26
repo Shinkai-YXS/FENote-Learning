@@ -1,0 +1,61 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-10-21 16:47:48
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-10-21 17:34:27
+ * @Description: 节流
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        #div1 {
+            border: 1px solid pink;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" draggable="true">可拖拽</div>
+    <script>
+        // const div1 = document.getElementById('div1')
+        // let timer = null
+        // div1.addEventListener('drag', function(e) {
+        //     if (timer) {
+        //         return
+        //     }
+        //     timer = setTimeout(() => {
+        //         console.log(e.offsetX, e.offsetY)
+        //         timer = null
+        //     }, 100)
+        // })
+
+        /**
+         * @Author: YXS
+         * @Description: 节流
+         * @param {fn} 回调函数
+         * @param {delay} 延迟时间
+         */
+        function throttle(fn, delay = 100) {
+            let timer = null
+            return function() {
+                if (timer) return
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments)
+                    timer = null
+                }, delay);
+            }
+        }
+
+        // 调用
+        const div1 = document.getElementById('div1')
+        div1.addEventListener('drag', throttle(function(e){
+            console.log(e.offsetX, e.offsetY)
+        }), 200)
+    </script>
+</body>
+</html>

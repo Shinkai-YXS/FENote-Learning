@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind</title>
+</head>
+<body>
+    <script>
+        function fn1(a, b) {
+            console.log('this', this)
+            console.log(a, b)
+            return 'this is fn1'
+        }
+        // bind 返回一个新的函数
+        // const fn2 = fn1.bind({x:100}, 10, 20)
+        // const res = fn2()
+        // console.log(res)
+
+    /**
+     * @Author: YXS
+     * @Description: 模拟 bind 函数
+     */
+    Function.prototype.bind1 = function() {
+        // 将参数拆解为数组
+        const args = Array.prototype.slice.call(arguments)
+
+        // 获取 this(数组第一项)
+        const t = args.shift()
+
+        // 当前 fn1.bind(...) 中的 fn1
+        const self = this
+
+        // 返回一个函数
+        return function() {
+            return self.apply(t, args)
+        }
+    }
+
+    const fn2 = fn1.bind1({x:100}, 10, 20)
+    const res = fn2()
+    console.log(res)
+    </script>
+</body>
+</html>
