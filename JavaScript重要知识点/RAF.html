@@ -1,0 +1,55 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-11-05 11:09:51
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-11-05 11:42:09
+ * @Description: RAF requestAnimateFrame
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAF requestAnimateFrame</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <script src="https://cdn.staticfile.org/jquery/1.10.0/jquery.js"></script>
+    <script>
+        // 在 3s 之内把宽度和高度增加两倍, 即增加 200 px
+        // 60帧每秒，3s 180 帧，每次变化 3px
+        const $div1 = $('#div1')
+        let curWidth = 100
+        let curHeight = 100
+        const max = 300
+        // function animate() {
+        //     curWidth += 3
+        //     curHeight += 3
+        //     $div1.css('width', curWidth)
+        //     $div1.css('height', curHeight)
+        //     if (curWidth < max) {
+        //         setTimeout(animate, 10)
+        //     }
+        // }
+        
+        // RAF
+        function animate() {
+            curWidth += 3
+            curHeight += 3
+            $div1.css('width', curWidth)
+            $div1.css('height', curHeight)
+            if (curWidth < max) {
+                window.requestAnimationFrame(animate)
+            }
+        }
+        animate()
+    </script>
+</body>
+</html>
