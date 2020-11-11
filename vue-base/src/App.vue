@@ -10,8 +10,9 @@
     <!-- <ListDemo /> -->
     <!-- <EventDemo /> -->
     <!-- <FormDemo /> -->
-    <button @click="show = !show">展示</button>
-    <ComponentsDemo v-if="show" />
+    <!-- <button @click="show = !show">展示</button> -->
+    <!-- <ComponentsDemo v-if="show" /> -->
+    <AdvancedUse />
   </div>
 </template>
 
@@ -25,7 +26,8 @@
 // import EventDemo from './components/BaseUse/EventDemo'
 // import FormDemo from './components/BaseUse/FormDemo'
 // import HelloWorld from './components/HelloWorld'
-import ComponentsDemo from './components/ComponentsDemo/index'
+// import ComponentsDemo from './components/ComponentsDemo/index'
+import AdvancedUse from './components/AdvancedUse/index'
 export default {
   name: 'App',
   components: {
@@ -35,7 +37,8 @@ export default {
     // EventDemo
     // FormDemo
     // HelloWorld,
-    ComponentsDemo
+    // ComponentsDemo
+    AdvancedUse
   },
   data() {
     return {
