@@ -1,0 +1,43 @@
+<!--
+ * @Author: YXS
+ * @Date: 2020-11-12 14:32:24
+ * @LastEditors: YXS
+ * @LastEditTime: 2020-11-12 14:42:27
+ * @Description: hash API test
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hash</title>
+</head>
+<body>
+    <p>hash test</p>
+    <button id="btn1">修改 hash</button>
+    <script>
+        // onhashchange 监听 hash 变化，包括：
+        // a. JS 修改 url
+        // b. 手动修改 url 的 hash
+        // c. 浏览器前进、后退
+        window.onhashchange = (event) => {
+            // event.oldURL 可以拿到改变之前的 hash 地址
+            console.log('old url', event.oldURL)
+            // event.newURL 可以拿到改变之后的 hash 地址
+            console.log('new url', event.newURL)
+            // location.hash 可以拿到 hash 最新的 hash 值
+            console.log('hash:', location.hash)
+        }
+
+        // 页面初次加载，获取 hash
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('hash:', location.hash)
+        })
+
+        // JS 修改 url
+        document.getElementById('btn1').addEventListener('click', () => {
+            location.href = '#/user'
+        })
+    </script>
+</body>
+</html>
