@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-11-13 10:45:07
  * @LastEditors: YXS
- * @LastEditTime: 2020-11-13 11:02:52
+ * @LastEditTime: 2020-11-16 17:15:41
  * @Description: 
  */
 // 引入 css
@@ -25,6 +25,13 @@ import imgFile1 from './img/1.png'
 insertImgElem(imgFile1)
 import imgFile2 from './img/2.jpeg'
 insertImgElem(imgFile2)
+
+// 引入动态数据 - 懒加载
+setTimeout(() => {
+    import('./dynamic-data.js').then(res => {
+        console.log(res.default.message)
+    })
+}, 1500);
 // // 增加，开启热更新之后的代码逻辑
 // if (module.hot) {
 //     module.hot.accept(['./math'], () => {
