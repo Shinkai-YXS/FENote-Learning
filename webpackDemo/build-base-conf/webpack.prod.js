@@ -2,20 +2,24 @@
  * @Author: YXS
  * @Date: 2020-11-13 11:08:26
  * @LastEditors: YXS
- * @LastEditTime: 2020-11-13 14:29:21
+ * @LastEditTime: 2020-11-16 10:57:19
  * @Description: 生产环境相关配置
  */
 const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpackCommonConf = require('./webpack.common.js')
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
     mode: 'production',
     output: {
-        filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
+         // 打包代码时，加上 hash 戳，contentHash 就是针对内容去算 hash 值，如果内容变了，hash 值就变，如果内容不变，hash 值就不变。
+        //  这样做的好处就是，每次打包完成去刷新页面时，每次访问 html 时，都会访问 bundle.[contentHash:8].js，
+        // 如果说打包的时候 js 内容变了，那么 contentHash 值也会变，缓存就会失效，就会访问新的文件
+        // 如果我们在打包的时候 js 内容没变，那么 contentHash 的值也不会变，我们在请求的时候就会走缓存。
+        filename: 'bundle.[contentHash:8].js',
         path: distPath,
         // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
     },

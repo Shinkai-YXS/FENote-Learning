@@ -2,16 +2,16 @@
  * @Author: YXS
  * @Date: 2020-11-13 11:08:18
  * @LastEditors: YXS
- * @LastEditTime: 2020-11-13 14:21:12
+ * @LastEditTime: 2020-11-13 15:00:00
  * @Description: 开发环境相关配置
  */
 const path = require('path')
 const webpack = require('webpack')
 const webpackCommonConf = require('./webpack.common.js')
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
     mode: 'development',
     module: {
         rules: [

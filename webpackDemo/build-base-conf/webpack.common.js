@@ -2,7 +2,7 @@
  * @Author: YXS
  * @Date: 2020-11-13 11:08:08
  * @LastEditors: YXS
- * @LastEditTime: 2020-11-13 14:19:47
+ * @LastEditTime: 2020-11-13 15:27:38
  * @Description: 公共配置
  */
 const path = require('path')
@@ -22,7 +22,6 @@ module.exports = {
                 // 排除 node_modules 目录下的文件
                 exclude: /node_modules/
             },
-            // 
             {
                 test: /\.css$/,
                 // loader 的执行顺序是：从后往前
