@@ -11,3 +11,7 @@ Promise.resolve(100).then(data => data);
 
 
 
+
+let value = 'apple'
+let example = 'an'
+str = `I have ${example} ${value}`
